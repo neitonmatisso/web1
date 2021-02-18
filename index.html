@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>P3212</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body background="images/volk.jpg">
+    <div class="header">
+        <h1>Ермаков Никита Сергеевич P3212 Вариант 2311</h1>
+    </div>
+
+    <div class="Image">
+      <img src="images/zadanie.png">  
+    </div>
+
+
+    <form name="test" action="obrabotka.php" method="POST">
+     <div class="selectCoordinateX">   
+         Выберите значение X
+      <select class="tfocus" name="coordinateX" id="X-input" type="text" onmouseover="validateX()" onchange="check()" required>
+          <option value="-5">-5</option>
+          <option value="-4">-4</option>
+          <option value="-3">-3</option>
+          <option value="-2">-2</option>
+          <option value="-1">-1</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+      </select> 
+      <p> <span class="comment" id="x-comment"></span> </p>
+     </div> 
+     <br>
+      <div class="selectCoordinateY">
+          Выберите значение Y
+        <input class="tfocus" type="text" placeholder="число от -3 до 3" id ="Y-input" name="coordinateY" onmouseover="validateY()" onchange="check()" required>
+        <p> <span class="comment" id="y-comment"></span> </p>
+      </div>
+      <br>
+       <div class="selectCoordinateR">
+          Выберите значение R
+       <!-- <button name="coordinateR" type="button" value="1">1</button>
+        <button name="coordinateR" type="button" value="2">2</button>
+        <button name="coordinateR" type="button" value="3">3</button>
+        <button name="coordinateR" type="button" value="4">4</button>
+        <button name="coordinateR" type="button" value="5">5</button>
+       -->
+       <p><input id="R-input" name="coordinateR" type="radio" value="1" onmouseover="validateR()" onchange="check()" required>1</p>
+       <p><input id="R-input" name="coordinateR" type="radio" value="2" onmouseover="validateR()" onchange="check()" required>2</p>
+       <p><input id="R-input" name="coordinateR" type="radio" value="3" onmouseover="validateR()" onchange="check()" required>3</p>
+       <p><input id="R-input" name="coordinateR" type="radio" value="4" onmouseover="validateR()" onchange="check()" required>4</p>
+       <p><input id="R-input" name="coordinateR" type="radio" value="5" onmouseover="validateR()" onchange="check()" required>5</p>
+       <p> <span class="comment" id="r-comment"></span> </p>
+    </div>
+      <br>
+      <button class="tfocus" id="button" type="submit" onclick="check()" >Отправить</button>
+      <span class="error" id="incorrectValuesError"></span>
+      <span class="error" id="httpError"></span>
+      
+    </form>
+
+</body>
+<script src="checker.js"></script>
+</html>

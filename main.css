@@ -1,0 +1,22 @@
+.header {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40em;
+    font-family: monospace;
+    color: slateblue;
+}
+
+.Image {
+    margin-left: auto;
+    margin-right: auto;
+    width: 10em;
+}
+
+.tfocus {
+    font-family: fantasy;
+}
+
+.comment {
+    font-family: fantasy;
+    color:coral;
+}
