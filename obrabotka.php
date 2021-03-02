@@ -17,23 +17,6 @@
          return 4;}
     }
 
-    /*   function wherePoint ($ax,$ay,$bx,$by,$px,$py) {
-        $s = ($bx-$ax)*($py-$ay)-($by-$ay)*($px-$ax);
-        if ($s>0) { return 1; }
-        elseif ($s<0) { return -1; }
-        else  { return 0; }
-    }
-    function pointInsideTriangle ($ax,$ay,$bx,$by,$cx,$cy,$px,$py) {
-        $pit = false;
-        $s1 = wherePoint($ax,$ay,$bx,$by,$px,$py);
-        $s2 = wherePoint($bx,$by,$cx,$cy,$px,$py);
-        if ($s2*$s1<=0) { $pit = false;};
-        $s3 = wherePoint($cx,$cy,$ax,$ay,$px,$py);
-        if ($s3*$s2<=0) {$pit = false;};
-        $pit = true;
-        return $pit;
-    } */
-
     function checkTriangle($x,$y,$r) {
         if ($r + $x >= 2 * $y) { 
             return  "yes";
@@ -56,41 +39,53 @@
         return "no";
     } 
 
-    @session_start();
-    if (!isset($_SESSION["rows"])) $_SESSION["rows"] = array();
-    date_default_timezone_set('Europe/Moscow');
 
+    session_start();
+    date_default_timezone_set('Europe/Moscow');
+    $start = microtime(true);
     $x = $_POST["coordinateX"];
     $y = $_POST["coordinateY"];
     $r = $_POST["coordinateR"];
-
-    $time = date("H:i:s");
-    $exec = round( (microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"]), 5);
-
-    if (checkData($x, $y, $r)) {
-
-        $coordinateQuarter = checkCoordinateQuarter($x,$y);
     
-    switch($coordinateQuarter) {
+    if (checkData($x, $y, $r)) {
+        $coordinateQuarter = checkCoordinateQuarter($x,$y);
+     switch($coordinateQuarter) {
         case "1" : $result = checkRectangle($x,$y,$r); break;
         case "2" : $result = checkTriangle($x,$y,$r); break;
         case "3" : $result = checkCircle($x,$y,$r); break;
         case "4" : $result = "no"; break;
      }
-    } else {
-        echo "Вы ввели некорректные значения";
-        return;
     }
     
-    array_push($_SESSION['rows'], "<td class='scroll'>$x</td><td class='scroll'>$y</td><td class='scroll'>$r</td><td>$time</td><td>$exec sec</td><td>$result</td>");
+    
+
+    $now = date("H:i:s");
+    $exec = round(microtime(true) - $start , 7);
+    $answer = array($x, $y, $r, $result, $now, $exec);
+
+    if (!isset($_SESSION["rows"])) $_SESSION["rows"] = array();
+    array_push($_SESSION['rows'], $answer);
     $html = file_get_contents('index.html');
     echo $html;
-    echo "<table id='out' align='center' border='1'>";
-    echo "<thead><tr><td>X</td><td>Y</td><td>R</td><td>Current time</td><td>Script executed in</td><td>Result</td></tr></thead>";
-    echo "<tbody>";
-    foreach ($_SESSION["rows"] as $row) {
-    echo "<tr>$row</tr>";
-    }
-    echo "</tbody></table>";
-
 ?>
+
+<table class="out">
+    <tr>
+        <th class="variable">X</th>
+        <th class="variable">Y</th>
+        <th class="variable">R</th>
+        <th>Result</th>
+        <th>Time</th>
+        <th>Script executed in</th>
+    </tr>
+    <?php foreach ($_SESSION['rows'] as $row) { ?>
+    <tr>
+        <td><?php echo $row[0] ?></td>
+        <td><?php echo $row[1] ?></td>
+        <td><?php echo $row[2] ?></td>
+        <td><?php echo $row[3] ?></td>
+        <td><?php echo $row[4] ?></td>
+        <td><?php echo number_format($row[5], 10, ".", "") ?></td>
+    </tr>
+    <?php }?>
+</table>

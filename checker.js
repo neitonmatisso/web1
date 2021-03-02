@@ -4,7 +4,6 @@ function isNum(n) {
     return (!isNaN(parseFloat(n)) && isFinite(n))
 }
 
-
 function validateX() {
     x = document.getElementById('X-input').value.replace(",", ".");
     if (x === undefined) {

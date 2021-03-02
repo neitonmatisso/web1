@@ -35,7 +35,7 @@
      <br>
       <div class="selectCoordinateY">
           Выберите значение Y
-        <input class="tfocus" type="text" placeholder="число от -3 до 3" id ="Y-input" name="coordinateY" onmouseover="validateY()" onchange="check()" required>
+        <input class="tfocus" type="text" placeholder="число от -3 до 3" id ="Y-input" name="coordinateY" maxlength="7" onmouseover="validateY()" onchange="check()" required>
         <p> <span class="comment" id="y-comment"></span> </p>
       </div>
       <br>
@@ -58,8 +58,13 @@
       <button class="tfocus" id="button" type="submit" onclick="check()" >Отправить</button>
       <span class="error" id="incorrectValuesError"></span>
       <span class="error" id="httpError"></span>
-      
+      <br>
     </form>
+
+    <form method="POST" action='clean.php'>
+      <input type="submit" name="cleaningbutton" value="Очистить" />
+  </form>
+    
 
 </body>
 <script src="checker.js"></script>

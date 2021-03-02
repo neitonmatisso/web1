@@ -20,3 +20,25 @@
     font-family: fantasy;
     color:coral;
 }
+
+#button {
+    color: black;
+    text-align: center;
+    padding: 1% 2%;
+    margin: 2%;
+    background: rgb(4, 178, 247);
+    border: dotted red;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+#cleaningbutton {
+    color: black;
+    text-align: center;
+    padding: 1% 2%;
+    margin: 2%;
+    background: rgb(229, 245, 6);
+    border: dotted #FFD7D5;
+    cursor: pointer;
+    border-radius: 30px;
+}
